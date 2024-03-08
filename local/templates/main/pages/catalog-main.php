@@ -36,7 +36,7 @@
 		"COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
 		"FILTER_NAME" => "sectionsFilter",
 		"HIDE_SECTIONS_WITH_ZERO_COUNT_ELEMENTS" => "N",
-		"IBLOCK_ID" => "1",
+		"IBLOCK_ID" => "2",
 		"IBLOCK_TYPE" => "content",
 		"SECTION_CODE" => $_GET["SECTION_CODE"],
 		"SECTION_FIELDS" => array(

@@ -16,9 +16,11 @@ foreach ($arResult['SECTIONS'] as $key => $arSection) {
         $arResult['SECTIONS'][$key]['SRC_IMG_MOBILE'] = $resized_image['src'];
     }
 
+
     if (!empty($arSection['UF_COLOR'])) {
         $field = CUserFieldEnum::GetList(array(), array('ID' => $arSection['UF_COLOR']));
         $arResult['SECTIONS'][$key]['UF_COLOR'] = $field->arResult[0]['VALUE'];
     }
+    
 }
 
