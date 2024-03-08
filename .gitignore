@@ -1,0 +1,9 @@
+/bitrix/
+/upload/
+/images/
+/blocks/
+/test/
+.idea
+1.php
+main.html
+.gitignore
