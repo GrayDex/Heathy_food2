@@ -85,11 +85,3 @@
         <br/><?= $arResult["NAV_STRING"] ?>
     <?php endif; ?>
 </div>
-
-<!--<div class="news-content__more btn-hover_parent">-->
-<!--	<div class="btn-hover_circle"></div>-->
-<!--	<span>Показать еще</span>-->
-<!--</div>-->
-
-
-

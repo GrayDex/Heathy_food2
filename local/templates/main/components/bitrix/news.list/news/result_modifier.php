@@ -1,5 +1,7 @@
 <?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die;
+
 //dd($arrFilter);
+//TODO qqw  w
 foreach ($arResult['ITEMS'] as $key => $arItem)
 {
     if ($arItem['DETAIL_PICTURE']) {
@@ -17,10 +19,10 @@ if (CModule::IncludeModule('iblock')) {
     $arResult['SECTION_BY_ID'][] = [
         'ID' => 0,
         'NAME' => 'Все',
-        'SECTION_PAGE_URL' => '/new-news/',
+        'SECTION_PAGE_URL' => '/news/',
         'IS_ACTIVE' => !$_GET['SECTION_CODE'],
     ];
-
+   
     while ($arSection = $rsSections->GetNext()) {
         $arResult['SECTION_BY_ID'][] = [
             'ID' => $arSection['ID'],
@@ -31,7 +33,7 @@ if (CModule::IncludeModule('iblock')) {
 
         $sectionName[$arSection['ID']] = $arSection['NAME'];
     }
-
+    
     foreach ($arResult['ITEMS'] as $key => $arItem)
     {
         if (isset($arItem['IBLOCK_SECTION_ID']) && isset($sectionName[$arItem['IBLOCK_SECTION_ID']]))

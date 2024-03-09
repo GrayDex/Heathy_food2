@@ -141,7 +141,7 @@
 			2 => "IBLOCK_TYPE_ID",
 			3 => "",
 		),
-		"IBLOCK_ID" => "2",
+		"IBLOCK_ID" => "3",
 		"IBLOCK_TYPE" => "content",
 		"IBLOCK_URL" => "",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
