@@ -10,7 +10,7 @@ foreach ($arResult['PROPERTIES']['GALLERY_FILES']['VALUE'] as $imageID) {
     )['src'];
 }
 
-// brand name
+// "brand" and "next item" props
 $rsElemList = CIBlockElement::GetList(arFilter: [
     'ID' => [$arResult['PROPERTIES']['BRAND']['VALUE'],
              $arResult['PROPERTIES']['NEXT_ITEM']['VALUE']],

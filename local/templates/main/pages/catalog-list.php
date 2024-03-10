@@ -80,9 +80,7 @@
     </div>
 </div>
 
-
 <section class="catalog-hero top-section container">
-    <!-------------------------------------------------------------------------------------------------->
 
     <div class="catalog-hero__breadcrumbs">
         <?php $APPLICATION->IncludeComponent(

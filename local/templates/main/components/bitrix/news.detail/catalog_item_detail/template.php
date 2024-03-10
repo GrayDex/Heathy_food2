@@ -335,8 +335,8 @@ $this->setFrameMode(true);
 
 							<?php foreach($arResult['PROPERTIES']['ENERGY_PROP']['PROPS'] as $name=>$desc): ?>
 							<div class="ac-catalog__goods-item">
-								<div class="ac-catalog__goods-title"><?= $name ?></div>
-								<div class="ac-catalog__goods-text"><?= $desc ?></div>
+								<div class="ac-catalog__goods-title"><?= $name ?> г</div>
+								<div class="ac-catalog__goods-text"><?= $desc ?> г</div>
 							</div>
 							<?php endforeach; ?>
 
