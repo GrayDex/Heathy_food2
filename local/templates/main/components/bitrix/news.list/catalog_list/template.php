@@ -1,20 +1,18 @@
 <?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 
-<?php $APPLICATION->SetTitle($arResult['MAIN_SECTION']['NAME']); ?>
-<?php if ($arResult['SECTIONS'] and count($arResult['SECTIONS']) > 1) : ?>
+<?php $APPLICATION->SetTitle(end($arResult['SECTION']['PATH'])['NAME']); ?>
 
+<?php if ($arResult['SECTIONS'] and count($arResult['SECTIONS']) > 1) : ?>
     <div class="catalog-hero__thumbs">
         <?php foreach ($arResult['SECTIONS'] as $arSection) : ?>
-
-            <a class="catalog-hero__thumbs-item <?= $arSection['IS_ACTIVE'] ? 'active' : '' ?> btn-hover_parent" href="<?= $arSection['SECTION_PAGE_URL'] ?>">
+            <a class="catalog-hero__thumbs-item <?= $arSection['IS_ACTIVE'] ? 'active' : '' ?> 
+                                                                btn-hover_parent" href="<?= $arSection['SECTION_PAGE_URL'] ?>">
                 <div class="btn-hover_circle"></div>
                 <span><?= $arSection['NAME'] ?></span>
             </a>
-
         <?php endforeach; ?>
 
     </div>
-
 <?php endif; ?>
 
 

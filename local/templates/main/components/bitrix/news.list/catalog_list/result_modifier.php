@@ -4,7 +4,7 @@
 foreach ($arResult['ITEMS'] as $key => $arItem) {
     if ($arItem['PREVIEW_PICTURE']) {
         $picId = $arResult['ITEMS'][$key]['PREVIEW_PICTURE']['ID'];
-        $size = ["width" => 1200, "height" => 800];
+        $size = ["width" => 640, "height" => 640];
         $resArr = CFile::ResizeImageGet($picId, $size, BX_RESIZE_IMAGE_EXACT);
         $arResult['ITEMS'][$key]['PREVIEW_PICTURE']['RES_PIC_SRC'] = $resArr['src'];
     }
@@ -14,13 +14,14 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
 if (CModule::IncludeModule('iblock')) {
 
     $arResult['PARENT_SECTION'] = $arResult['SECTION']['PATH'][0];
+
     $arResult['SECTIONS'][] = [
         'ID' => 0,
         'NAME' => 'Все',
         'SECTION_PAGE_URL' => $arResult['PARENT_SECTION']['SECTION_PAGE_URL'], // get parent section
-        'IS_ACTIVE' => count($arResult['SECTION']['PATH']) == 1, // if path contains only one section, then parent was called
+        'IS_ACTIVE' => $arResult['PARENT_SECTION']['CODE'] == $arParams['PARENT_SECTION_CODE']
     ];
-    //dd($arResult['PARENT_SECTION']);
+
     $rsSections = CIBlockSection::GetList(arFilter: [
         'SECTION_ID' => $arResult['PARENT_SECTION']['ID'],
         'GLOBAL_ACTIVE' => 'Y',
@@ -33,7 +34,7 @@ if (CModule::IncludeModule('iblock')) {
             'ID' => $arSection['ID'],
             'NAME' => $arSection['NAME'],
             'SECTION_PAGE_URL' => $arSection['SECTION_PAGE_URL'],
-            'IS_ACTIVE' => $arSection['CODE'] == $_GET['SECTION_CODE'],
+            'IS_ACTIVE' => $arSection['CODE'] == $arParams['PARENT_SECTION_CODE'],
         ];
         $sectNamebyID[$arSection['ID']] = $arSection['NAME'];
     }
