@@ -1,7 +1,8 @@
 <?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 
+<? $APPLICATION->SetTitle($arResult['NAME']);?>
 <div class="news-content__top">
-    <h1 class="news-content__title"><?= $arResult['NAME'] ?></h1>
+    <h1 class="news-content__title"><?php $APPLICATION->ShowTitle() ?></h1>
     <div class="title-rombs">
         <div class="title-rombs__item">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 20 20" fill="none">
@@ -66,7 +67,6 @@
                     <div class="news-card__plug"><?= $arItem['SECTION_NAME'] ?></div>
                     <div class="news-card__bg">
                         <picture class="picture">
-<!--                            <source type="image/webp" srcset="">-->
                             <img class="picture__img" src="<?= $arItem['DETAIL_PICTURE']['RES_PIC_SRC'] ?>">
                         </picture>
                     </div>

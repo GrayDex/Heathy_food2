@@ -1,17 +1,33 @@
 <?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die; ?>
 
+<?php 
+$path = $APPLICATION->GetCurDir();
+
+$arrPath = explode('/', $path);
+$arrPath = array_filter($arrPath, function ($elem) {
+	return $elem != '';
+});
+
+if (isset($arrPath[2])) {
+	$_GET['SECTION_CODE'] = $arrPath[2];
+}
+if (isset($arrPath[3])) {
+	$_GET['ELEMENT_CODE'] = $arrPath[3];
+}
+?>
+
 <?php if (empty($_GET['ELEMENT_CODE'])) : ?>
 	<section class="top-section">
 		<section class="news-content container">
 
 			<?php $APPLICATION->IncludeComponent(
 				"bitrix:breadcrumb",
-				"news_bcrumbs",
+				"nav_catalog_list",
 				array(
-					"PATH" => "/",
+					"PATH" => "",
 					"SITE_ID" => "s1",
 					"START_FROM" => "0",
-					"COMPONENT_TEMPLATE" => "news_bcrumbs"
+					"COMPONENT_TEMPLATE" => "nav_catalog_list"
 				),
 				false
 			); ?>
@@ -19,8 +35,8 @@
 			<?php global $arrFilter;
 			$arrFilter = [];
 			if (isset($_GET['SECTION_CODE'])) {
-				$arrFilter['=SECTION_CODE'] = $_GET['SECTON_CODE'];
-			}?>
+				$arrFilter['=SECTION_CODE'] = $_GET['SECTION_CODE'];
+			} ?>
 
 			<?php $APPLICATION->IncludeComponent(
 				"bitrix:news.list",
@@ -96,79 +112,79 @@
 	<section class="top-section container">
 
 		<?php $APPLICATION->IncludeComponent(
-			"bitrix:breadcrumb",
-			"news_bcrumbs",
-			array(
-				"PATH" => "/",
-				"SITE_ID" => "s1",
-				"START_FROM" => "0",
-				"COMPONENT_TEMPLATE" => "news_bcrumbs"
-			),
-			false
-		); ?>
+	"bitrix:breadcrumb", 
+	"nav_catalog_list", 
+	array(
+		"PATH" => "",
+		"SITE_ID" => "s1",
+		"START_FROM" => "0",
+		"COMPONENT_TEMPLATE" => "nav_catalog_list"
+	),
+	false
+); ?>
 
 		<?php $APPLICATION->IncludeComponent(
-			"bitrix:news.detail",
-			"detail_new",
-			array(
-				"ACTIVE_DATE_FORMAT" => "j M Y",
-				"ADD_ELEMENT_CHAIN" => "N",
-				"ADD_SECTIONS_CHAIN" => "Y",
-				"AJAX_MODE" => "N",
-				"AJAX_OPTION_ADDITIONAL" => "",
-				"AJAX_OPTION_HISTORY" => "N",
-				"AJAX_OPTION_JUMP" => "N",
-				"AJAX_OPTION_STYLE" => "Y",
-				"BROWSER_TITLE" => "-",
-				"CACHE_GROUPS" => "Y",
-				"CACHE_TIME" => "36000000",
-				"CACHE_TYPE" => "A",
-				"CHECK_DATES" => "Y",
-				"COMPONENT_TEMPLATE" => "detail_new",
-				"DETAIL_URL" => "",
-				"DISPLAY_BOTTOM_PAGER" => "Y",
-				"DISPLAY_DATE" => "Y",
-				"DISPLAY_NAME" => "Y",
-				"DISPLAY_PICTURE" => "Y",
-				"DISPLAY_PREVIEW_TEXT" => "Y",
-				"DISPLAY_TOP_PAGER" => "N",
-				"ELEMENT_CODE" => $_GET["ELEMENT_CODE"],
-				"ELEMENT_ID" => "",
-				"FIELD_CODE" => array(
-					0 => "DETAIL_TEXT",
-					1 => "DETAIL_PICTURE",
-					2 => "IBLOCK_TYPE_ID",
-					3 => "",
-				),
-				"IBLOCK_ID" => "3",
-				"IBLOCK_TYPE" => "content",
-				"IBLOCK_URL" => "",
-				"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
-				"MESSAGE_404" => "",
-				"META_DESCRIPTION" => "-",
-				"META_KEYWORDS" => "-",
-				"PAGER_BASE_LINK_ENABLE" => "N",
-				"PAGER_SHOW_ALL" => "N",
-				"PAGER_TEMPLATE" => ".default",
-				"PAGER_TITLE" => "Страница",
-				"PROPERTY_CODE" => array(
-					0 => "",
-					1 => "",
-				),
-				"SET_BROWSER_TITLE" => "Y",
-				"SET_CANONICAL_URL" => "N",
-				"SET_LAST_MODIFIED" => "N",
-				"SET_META_DESCRIPTION" => "Y",
-				"SET_META_KEYWORDS" => "Y",
-				"SET_STATUS_404" => "N",
-				"SET_TITLE" => "Y",
-				"SHOW_404" => "N",
-				"STRICT_SECTION_CHECK" => "N",
-				"USE_PERMISSIONS" => "N",
-				"USE_SHARE" => "N"
-			),
-			false
-		); ?>
+	"bitrix:news.detail", 
+	"detail_new", 
+	array(
+		"ACTIVE_DATE_FORMAT" => "j M Y",
+		"ADD_ELEMENT_CHAIN" => "N",
+		"ADD_SECTIONS_CHAIN" => "Y",
+		"AJAX_MODE" => "N",
+		"AJAX_OPTION_ADDITIONAL" => "",
+		"AJAX_OPTION_HISTORY" => "N",
+		"AJAX_OPTION_JUMP" => "N",
+		"AJAX_OPTION_STYLE" => "Y",
+		"BROWSER_TITLE" => "-",
+		"CACHE_GROUPS" => "Y",
+		"CACHE_TIME" => "36000000",
+		"CACHE_TYPE" => "A",
+		"CHECK_DATES" => "Y",
+		"COMPONENT_TEMPLATE" => "detail_new",
+		"DETAIL_URL" => "",
+		"DISPLAY_BOTTOM_PAGER" => "Y",
+		"DISPLAY_DATE" => "Y",
+		"DISPLAY_NAME" => "Y",
+		"DISPLAY_PICTURE" => "Y",
+		"DISPLAY_PREVIEW_TEXT" => "Y",
+		"DISPLAY_TOP_PAGER" => "N",
+		"ELEMENT_CODE" => $_GET["ELEMENT_CODE"],
+		"ELEMENT_ID" => "",
+		"FIELD_CODE" => array(
+			0 => "DETAIL_TEXT",
+			1 => "DETAIL_PICTURE",
+			2 => "IBLOCK_TYPE_ID",
+			3 => "",
+		),
+		"IBLOCK_ID" => "3",
+		"IBLOCK_TYPE" => "content",
+		"IBLOCK_URL" => "",
+		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
+		"MESSAGE_404" => "",
+		"META_DESCRIPTION" => "-",
+		"META_KEYWORDS" => "-",
+		"PAGER_BASE_LINK_ENABLE" => "N",
+		"PAGER_SHOW_ALL" => "N",
+		"PAGER_TEMPLATE" => ".default",
+		"PAGER_TITLE" => "Страница",
+		"PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"SET_BROWSER_TITLE" => "Y",
+		"SET_CANONICAL_URL" => "N",
+		"SET_LAST_MODIFIED" => "N",
+		"SET_META_DESCRIPTION" => "Y",
+		"SET_META_KEYWORDS" => "Y",
+		"SET_STATUS_404" => "N",
+		"SET_TITLE" => "Y",
+		"SHOW_404" => "N",
+		"STRICT_SECTION_CHECK" => "N",
+		"USE_PERMISSIONS" => "N",
+		"USE_SHARE" => "N"
+	),
+	false
+); ?>
 
 	</section>
 

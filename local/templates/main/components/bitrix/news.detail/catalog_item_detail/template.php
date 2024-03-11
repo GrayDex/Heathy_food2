@@ -1,5 +1,6 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $this->setFrameMode(true);
+$APPLICATION->SetTitle($arResult['NAME']);
 ?>
 
 <section class="catalog-detail top-section container">
@@ -156,7 +157,7 @@ $this->setFrameMode(true);
 				</div>
 			</div>
 			<span class="catalog-detail__brandmark"><?= $arResult['PROPERTIES']['BRAND']['NAME'] ?></span>
-			<div class="catalog-detail__title"><?= $arResult['NAME'] ?></div>
+			<div class="catalog-detail__title"><? $APPLICATION->ShowTitle() ?></div>
 			<div class="catalog-detail__desk"><?= $arResult['PREVIEW_TEXT'] ?></div>
 			<div class="catalog-detail__thumbs" data-aos="fade-up">
 				<div class="catalog-detail__thumbs-top"><a class="catalog-hero__rec blue btn-hover_parent" href="#">
