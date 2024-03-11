@@ -69,28 +69,26 @@
 
 <section class="catalog-hero top-section container">
 
-    <div class="catalog-hero__breadcrumbs">
-        <?php $APPLICATION->IncludeComponent(
-            "bitrix:breadcrumb",
-            "nav_catalog_list",
-            array(
-                "PATH" => "",
-                "SITE_ID" => "s1",
-                "START_FROM" => "0",
-                "COMPONENT_TEMPLATE" => "nav_catalog_list"
-            ),
-            false
-        ); ?>
-    </div>
 
+    <?php $APPLICATION->IncludeComponent(
+        "bitrix:breadcrumb",
+        "nav_catalog_list",
+        array(
+            "PATH" => "",
+            "SITE_ID" => "s1",
+            "START_FROM" => "0",
+            "COMPONENT_TEMPLATE" => "nav_catalog_list"
+        ),
+        false
+    ); ?>
 
-    <?php 
+    <?php
     global $arrFilter;
     $arrFilter = [];
     if (isset($_GET['SECTION_CODE'])) {
         $arrFilter['=SECTION_CODE'] = $_GET['SECTON_CODE'];
     }
-    
+
     $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"catalog_list", 
@@ -130,7 +128,7 @@
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
 		"PAGER_SHOW_ALL" => "N",
-		"PAGER_SHOW_ALWAYS" => "N",
+		"PAGER_SHOW_ALWAYS" => "Y",
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PARENT_SECTION" => "",

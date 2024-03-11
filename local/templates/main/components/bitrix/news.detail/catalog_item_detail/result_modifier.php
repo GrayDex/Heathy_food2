@@ -12,8 +12,10 @@ foreach ($arResult['PROPERTIES']['GALLERY_FILES']['VALUE'] as $imageID) {
 
 // "brand" and "next item" props
 $rsElemList = CIBlockElement::GetList(arFilter: [
-    'ID' => [$arResult['PROPERTIES']['BRAND']['VALUE'],
-             $arResult['PROPERTIES']['NEXT_ITEM']['VALUE']],
+    'ID' => [
+        $arResult['PROPERTIES']['BRAND']['VALUE'],
+        $arResult['PROPERTIES']['NEXT_ITEM']['VALUE']
+    ],
 ]);
 
 while ($arElem = $rsElemList->GetNext()) {
@@ -24,7 +26,7 @@ while ($arElem = $rsElemList->GetNext()) {
     }
     // "next item" element
     if ($arElem['ID'] == $arResult['PROPERTIES']['NEXT_ITEM']['VALUE']) {
-        
+
         $arResult['PROPERTIES']['NEXT_ITEM']['ITEM_NAME'] = $arElem['NAME'];
         $arResult['PROPERTIES']['NEXT_ITEM']['ITEM_URL'] = $arElem['DETAIL_PAGE_URL'];
 
@@ -35,7 +37,6 @@ while ($arElem = $rsElemList->GetNext()) {
             $targetImageSize,
             BX_RESIZE_IMAGE_EXACT,
         )['src'];
-
     }
 }
 
@@ -51,4 +52,19 @@ foreach ($arResult['PROPERTIES']['CONDITION_STOR']['VALUE'] as $key => $name) {
 // energy props: name=>description
 foreach ($arResult['PROPERTIES']['ENERGY_PROP']['VALUE'] as $key => $name) {
     $arResult['PROPERTIES']['ENERGY_PROP']['PROPS'][$name] = $arResult['PROPERTIES']['ENERGY_PROP']['DESCRIPTION'][$key];
+}
+
+$packPropNames = ['WEIGHT', 'CNT_BOX', 'CNT_PALLETE'];
+
+foreach ($packPropNames as $propName) {
+    if ($arResult['PROPERTIES'][$propName]['VALUE'])
+     {
+        $arResult['PROPERTIES']['PACK_PROPS'][$propName]['VALUE'] = $arResult['PROPERTIES'][$propName]['VALUE'];
+        if ($arResult['PROPERTIES'][$propName]['DESCRIPTION']) {
+            $arResult['PROPERTIES']['PACK_PROPS'][$propName]['DESCR'] = $arResult['PROPERTIES'][$propName]['DESCRIPTION'];
+        }
+        if ($arResult['PROPERTIES'][$propName]['CODE']) {
+            $arResult['PROPERTIES']['PACK_PROPS'][$propName]['CODE'] = $arResult['PROPERTIES'][$propName]['CODE'];
+        }
+    }
 }

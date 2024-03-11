@@ -2,7 +2,7 @@
 
 
 if (!function_exists('dd') and !function_exists('clean_keys')) {
-	function dd($var, bool $dump = false, bool $clean_tilde_keys = true)
+	function dd($var, bool $dump = false, bool $clean_tilde_keys = true, bool $die = true)
 	{
 		global $APPLICATION;
 
@@ -17,7 +17,7 @@ if (!function_exists('dd') and !function_exists('clean_keys')) {
 			print_r($var);
 		}
 		echo '</pre>';
-		die();
+		if ($die) die();
 	}
 
 	function clean_keys($arr, $pattern = "/~/", $depth = 100)
@@ -38,4 +38,3 @@ if (!function_exists('dd') and !function_exists('clean_keys')) {
 		return $arr;
 	}
 }
-

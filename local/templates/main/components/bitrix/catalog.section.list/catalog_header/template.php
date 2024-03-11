@@ -5,7 +5,6 @@
     <div class="header-production__items">
         <div class="main-catalog__list header-prod">
 
-
             <?php foreach ($arResult['SECTIONS'] as $arSection): ?>
                 <a class="main-catalog__item btn-hover_parent" href="<? $arSection["SECTION_PAGE_URL"] ?>">
                     <div class="main-catalog__item-bg desktop-only">
@@ -95,12 +94,7 @@
                                 </defs>
                             </svg>
                         </div>
-                        <div <? if ($arSection["UF_COLOR"] === 'белый'): ?>
-                            class="main-catalog__item-title white"
-                        <? else: ?>
-                            class="main-catalog__item-title blue"
-                        <? endif; ?>
-                        >
+                        <div <? if ($arSection["UF_COLOR"] === 'белый'): ?> class="main-catalog__item-title white" <? else: ?> class="main-catalog__item-title blue" <? endif; ?> >
                             <?= $arSection['NAME'] ?>
                         </div>
                     </div>

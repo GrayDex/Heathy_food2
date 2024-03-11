@@ -4,10 +4,6 @@
 <?php if ($arResult['SECTIONS']): ?>
     <div class="main-catalog__list" data-aos="fade-up" data-aos-duration="1500">
 
-	    <?php if ($arParams["DISPLAY_TOP_PAGER"]): ?>
-		    <?= $arResult["NAV_STRING"] ?><br />
-	    <?php endif; ?>
-
         <?php foreach ($arResult['SECTIONS'] as $arSection): ?>
 		    <?php
 		    $this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "SECTION_EDIT"));
@@ -25,7 +21,6 @@
 	                </div>
 	                <div class="main-catalog__item-bg mobile">
 	                    <picture class="picture">
-<!--	                        <source type="image/webp" srcset="--><?//= $arSection['SRC_IMG_MOBILE'] ?><!--">-->
 	                        <img class="picture__img" src="<?= $arSection['SRC_IMG_MOBILE'] ?>">
 	                    </picture>
 	                </div>
@@ -52,10 +47,6 @@
 	            </a>
 		    </div>
         <?php endforeach; ?>
-
-	    <?php if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
-		    <br /><?= $arResult["NAV_STRING"] ?>
-	    <?php endif; ?>
 
     </div>
 <?php endif; ?>
