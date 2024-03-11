@@ -108,8 +108,6 @@ if (is_array($arResult['SECTION']['PATH'])) {
 <section class="catalog-list container section-animation" data-aos="fade-up">
     <div class="catalog-list__inner">
 
-        <?= $arParams['DISPLAY_TOP_PAGER'] ? $arResult['NAV_STRING'].'<br />': '' ?>
-
         <?php foreach ($arResult['ITEMS'] as $arItem) : ?>
 
             <?php

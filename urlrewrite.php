@@ -1,6 +1,6 @@
 <?php
 $arUrlRewrite=array (
-  6 => 
+  7 => 
   array (
     'CONDITION' => '#^/catalog/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/#',
     'RULE' => 'SECTION_CODE=$1&CODE=$2',
@@ -16,7 +16,7 @@ $arUrlRewrite=array (
     'PATH' => '/news/index.php',
     'SORT' => 100,
   ),
-  7 => 
+  6 => 
   array (
     'CONDITION' => '#^/catalog/([a-zA-Z0-9_-]+)/#',
     'RULE' => 'SECTION_CODE=$1',
@@ -30,22 +30,6 @@ $arUrlRewrite=array (
     'RULE' => 'SECTION_CODE=$1',
     'ID' => '',
     'PATH' => '/news/index.php',
-    'SORT' => 100,
-  ),
-  4 => 
-  array (
-    'CONDITION' => '#^/Главная/#',
-    'RULE' => '',
-    'ID' => NULL,
-    'PATH' => '/index.php',
-    'SORT' => 100,
-  ),
-  5 => 
-  array (
-    'CONDITION' => '#^/rest/#',
-    'RULE' => '',
-    'ID' => NULL,
-    'PATH' => '/bitrix/services/rest/index.php',
     'SORT' => 100,
   ),
 );

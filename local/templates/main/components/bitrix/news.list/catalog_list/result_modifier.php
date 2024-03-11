@@ -4,7 +4,7 @@
 foreach ($arResult['ITEMS'] as $key => $arItem) {
     if ($arItem['PREVIEW_PICTURE']) {
         $picId = $arResult['ITEMS'][$key]['PREVIEW_PICTURE']['ID'];
-        $size = ["width" => 640, "height" => 640];
+        $size = ["width" => 310, "height" => 310];
         $resArr = CFile::ResizeImageGet($picId, $size, BX_RESIZE_IMAGE_PROPORTIONAL);
         $arResult['ITEMS'][$key]['PREVIEW_PICTURE']['RES_PIC_SRC'] = $resArr['src'];
     }

@@ -44,7 +44,6 @@ $this->setFrameMode(true);
 								<div class="swiper-slide">
 									<div class="catalog-detail__thumb-img">
 										<picture class="picture">
-											<!-- <source type="image/webp" srcset="assets/images/catalog-detail1.webp"> -->
 											<img class="picture__img" src="<?= $imageSrc ?>">
 										</picture>
 									</div>
@@ -113,7 +112,6 @@ $this->setFrameMode(true);
 								<div class="swiper-slide">
 									<div class="catalog-detail__img">
 										<picture class="picture">
-											<!-- <source type="image/webp" srcset="assets/images/catalog-detail1.webp"> -->
 											<img class="picture__img" src="<?= $imageSrc ?>">
 										</picture>
 									</div>
@@ -279,7 +277,6 @@ $this->setFrameMode(true);
 													<rect x="0.5" y="0.5" width="23" height="23" rx="5.5" stroke="#CEDFF5"></rect>
 												</svg>
 											</div>
-
 										<?php endif; ?>
 
 									</div>

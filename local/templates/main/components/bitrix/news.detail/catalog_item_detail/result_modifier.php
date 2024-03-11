@@ -31,7 +31,7 @@ while ($arElem = $rsElemList->GetNext()) {
         $arResult['PROPERTIES']['NEXT_ITEM']['ITEM_URL'] = $arElem['DETAIL_PAGE_URL'];
 
         $image = CFile::GetByID($arElem['PREVIEW_PICTURE'])->arResult[0]['SRC'];
-        $imageTargetSize = ['height' => 620, 'weight' => 620];
+        $imageTargetSize = ['height' => 310, 'weight' => 310];
         $arResult['PROPERTIES']['NEXT_ITEM']['ITEM_PICTURE'] = CFile::ResizeImageGet(
             $imageID,
             $targetImageSize,
@@ -68,3 +68,4 @@ foreach ($packPropNames as $propName) {
         }
     }
 }
+
