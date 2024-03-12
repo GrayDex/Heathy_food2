@@ -26,7 +26,7 @@ if (is_array($arResult['SECTION']['PATH'])) {
 <?php if ($arResult['SECTIONS'] and count($arResult['SECTIONS']) > 1) : ?>
     <div class="catalog-hero__thumbs">
         <?php foreach ($arResult['SECTIONS'] as $arSection) : ?>
-            <a class="catalog-hero__thumbs-item <?= $arSection['IS_ACTIVE'] ? 'active' : '' ?> 
+            <a class="catalog-hero__thumbs-item <?= $arSection['ID']==$arResult['ACTIVE_SECTION_ID'] ? 'active' : '' ?> 
                                                                 btn-hover_parent" href="<?= $arSection['SECTION_PAGE_URL'] ?>">
                 <div class="btn-hover_circle"></div>
                 <span><?= $arSection['NAME'] ?></span>
@@ -35,9 +35,9 @@ if (is_array($arResult['SECTION']['PATH'])) {
     </div>
 <?php endif; ?>
 
-<div class="catalog-hero__activity" data-aos="fade-up">
+<form class="catalog-hero__activity" data-aos="fade-up">
     <label class="catalog-hero__tops desktop" for="top">
-        <input class="catalog-hero__tops-input catalog-check-desktop" type="checkbox" name="top" id="top">
+        <input class="catalog-hero__tops-input catalog-check-desktop" type="checkbox" name="top" id="top" value="Y" <?= $_GET['top'] == 'Y' ? 'checked' : '' ?> >
         <div class="catalog-hero__tops-box">
             <svg class="mark-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewbox="0 0 14 10" fill="none">
                 <path d="M1 5L5 9L13 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -54,24 +54,30 @@ if (is_array($arResult['SECTION']['PATH'])) {
         <div class="catalog-hero__tops-text">Топ продаж</div>
     </label>
     <div class="catalog-hero__selects">
+
         <div class="catalog-hero__select desktop">
             <div class="select-wrapper">
-                <div class="select"><select class="select__select" style="width: 100%" data-select-placeholder="Бренд">
+                <div class="select">
+                    <select class="select__select" style="width: 100%" data-select-placeholder="Бренд" name="brand">
                         <option value="" selected="selected" disabled="disabled"></option>
                         <option value="Сёмыч">Сёмыч</option>
                         <option value="Ладушка">Ладушка</option>
-                    </select></div>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="catalog-hero__select desktop">
             <div class="select-wrapper">
-                <div class="select"><select class="select__select" style="width: 100%" data-select-placeholder="Жирность">
+                <div class="select">
+                    <select class="select__select" style="width: 100%" data-select-placeholder="Жирность" name="fat">
                         <option value="" selected="selected" disabled="disabled"></option>
                         <option value="Жирность1">Жирность1</option>
                         <option value="Жирность2">Жирность2</option>
-                    </select></div>
+                    </select>
+                </div>
             </div>
         </div>
+
         <div class="catalog-hero__filters mobile" data-popup="catalog-filters">
             <div class="catalog-hero__filters-icon">
                 <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,15 +86,19 @@ if (is_array($arResult['SECTION']['PATH'])) {
                 </svg>
             </div>
             <div class="catalog-hero__filters-text">Фильтры</div>
-            <div class="catalog-hero__filters-circle"><span class="catalog-hero__filters-num">2</span></div>
+            <div class="catalog-hero__filters-circle">
+                <span class="catalog-hero__filters-num">2</span>
+            </div>
         </div>
         <div class="catalog-hero__select">
             <div class="select-wrapper">
-                <div class="select cstm-arrows"><select class="select__select" style="width: 100%" data-select-placeholder="Сначала новинки">
+                <div class="select cstm-arrows">
+                    <select class="select__select" style="width: 100%" data-select-placeholder="Сначала новинки">
                         <option value="" selected="selected" disabled="disabled"></option>
                         <option value="Сначала новинки">Сначала новинки</option>
                         <option value="Сначала популярные">Сначала популярные</option>
-                    </select></div>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="catalog-hero__select"></div>
@@ -101,7 +111,8 @@ if (is_array($arResult['SECTION']['PATH'])) {
         </div>
         <div class="catalog-hero__reset-text">Сбросить</div>
     </div>
-</div>
+    <input type="submit">
+</form>
 
 </section>
 
@@ -229,7 +240,7 @@ if (is_array($arResult['SECTION']['PATH'])) {
             </a>
         <?php endforeach; ?>
 
-        <?= $arParams['DISPLAY_BOTTOM_PAGER'] ? '<br />'.$arResult['NAV_STRING']: '' ?>
+        <?= $arParams['DISPLAY_BOTTOM_PAGER'] ? '<br />' . $arResult['NAV_STRING'] : '' ?>
 
     </div>
 </section>

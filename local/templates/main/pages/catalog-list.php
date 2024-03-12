@@ -85,10 +85,15 @@
     <?php
     global $arrFilter;
     $arrFilter = [];
+ 
     if (isset($arrUrl[2])) {
         $arrFilter['=SECTION_CODE'] = $arrUrl[2];
     }
-
+    if (isset($_GET['brand'])) {
+        //$arrFilter['=BRAND'] = $_GET['brand'];
+       //dd($_GET['brand']);
+    }
+    //dd($arrFilter);
     $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"catalog_list", 
@@ -132,14 +137,15 @@
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PARENT_SECTION" => "",
-		"PARENT_SECTION_CODE" => "$arrUrl[2]",
+		"PARENT_SECTION_CODE" => $arrUrl[2],
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
 			0 => "WEIGHT",
-			1 => "CNT_BOX",
-			2 => "CNT_PALLETE",
-			3 => "LOGO",
-			4 => "",
+			1 => "FAT",
+			2 => "CNT_BOX",
+			3 => "CNT_PALLETE",
+			4 => "LOG",
+			5 => "",
 		),
 		"SET_BROWSER_TITLE" => "N",
 		"SET_LAST_MODIFIED" => "N",
