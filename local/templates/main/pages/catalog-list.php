@@ -85,8 +85,8 @@
     <?php
     global $arrFilter;
     $arrFilter = [];
-    if (isset($_GET['SECTION_CODE'])) {
-        $arrFilter['=SECTION_CODE'] = $_GET['SECTON_CODE'];
+    if (isset($arrUrl[2])) {
+        $arrFilter['=SECTION_CODE'] = $arrUrl[2];
     }
 
     $APPLICATION->IncludeComponent(
@@ -132,7 +132,7 @@
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PARENT_SECTION" => "",
-		"PARENT_SECTION_CODE" => $_GET["SECTION_CODE"],
+		"PARENT_SECTION_CODE" => "$arrUrl[2]",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
 			0 => "WEIGHT",
