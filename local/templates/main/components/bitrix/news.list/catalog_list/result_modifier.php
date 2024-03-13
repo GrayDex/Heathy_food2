@@ -1,6 +1,5 @@
 <?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die;
 
-
 // resize images
 foreach ($arResult['ITEMS'] as $key => $arItem) {
     if ($arItem['PREVIEW_PICTURE']) {
@@ -40,7 +39,7 @@ while ($arSection = $rsSections->GetNext()) {
     $sectNamebyID[$arSection['ID']] = $arSection['NAME'];
 }
 
-// setup name of sections in the ITEMS
+// setup name of section in the ITEMS
 foreach ($arResult['ITEMS'] as $key => $arItem) {
     if (isset($arItem['IBLOCK_SECTION_ID']) && isset($sectNamebyID[$arItem['IBLOCK_SECTION_ID']])) {
         $arResult['ITEMS'][$key]['SECTION_NAME'] = $sectNamebyID[$arItem['IBLOCK_SECTION_ID']];
@@ -64,26 +63,14 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
     }
 }
 
-// property logo='top' to show into UI filter options, if exist
-$rsRes = CIBlockElement::GetList(
-    arFilter: ['SECTION_ID' => 2, 'INCLUDE_SUBSECTIONS' => 'Y'],
-    arSelectFields: ['PROPERTY_BRAND_VALUE']
-);
 
-$arrRes = [];
-while ($arItem = $rsRes->GetNext()) {
-    $arrRes[] = $arItem;
-}
-//dd($arrRes);
-
-
-
-// property logo='top' to show into UI filter options, if exist
+// property logo='top' to show in UI filter
 $rsPropLogo = CIBlockElement::GetList(
     arFilter: [
-        'SECTION_ID' => $arResult['ACTIVE_SECTION_ID'], 
-        'INCLUDE_SUBSECTIONS' => 'Y', 
-        'PROPERTY_LOGO_VALUE' => 'top'],
+        'SECTION_ID' => $arResult['ACTIVE_SECTION_ID'],
+        'INCLUDE_SUBSECTIONS' => 'Y',
+        'PROPERTY_LOGO_VALUE' => 'top'
+    ],
     arSelectFields: ['NAME'],
 );
 
@@ -92,24 +79,51 @@ if ($rsPropLogo->GetNext()) {
 }
 
 
-// get brand names from propertie to show in filter UI
+// get brand names from properties to show in UI filter
+
 $rsPropList = CIBlockElement::GetList(
-    arFilter: ['SECTION_ID' => $arResult['PARENT_SECTION'], 'INCLUDE_SUBSECTIONS' => 'Y'],
+    arFilter: [
+        'SECTION_ID' => $arResult['ACTIVE_SECTION_ID'],
+        'INCLUDE_SUBSECTIONS' => 'Y',
+        'GLOBAL_ACTIVE' => 'Y'
+    ],
     arGroupBy: ['PROPERTY_BRAND'],
 );
 
 $brandIDs = [];
 while ($arProps = $rsPropList->GetNext()) {
-    $brandIDs[] = $arProps['PROPERTY_BRAND_VALUE'];
+    if ($arProps['PROPERTY_BRAND_VALUE'] != '') {
+        $brandIDs[] = $arProps;
+    }
 }
 
-$rsBrandNames = CIBlockElement::GetList(
-    arFilter: ['ID' => $brandIDs],
-    arSelectFields: ['NAME','ID'],
+if ($brandIDs) {
+    $rsBrandNames = CIBlockElement::GetList(
+        arFilter: ['ID' => $brandIDs],
+        arSelectFields: ['NAME', 'ID'],
+    );
+
+
+    $brands = [];
+    while ($brand = $rsBrandNames->GetNext()) {
+        $brands[] = $brand;
+    }
+    $arResult['PROPS_FILTER_UI']['BRAND'] = $brands;
+}
+
+//get 'fat' property to show in the UI filter
+$rsPropList = CIBlockElement::GetList(
+    arFilter: [
+        'SECTION_ID' => $arResult['ACTIVE_SECTION_ID'],
+        'INCLUDE_SUBSECTIONS' => 'Y'
+    ],
+    arGroupBy: ['PROPERTY_FAT'],
 );
 
-$brands=[];
-while ($brand = $rsBrandNames->GetNext()) {
-    $brands[] = $brand;
+$fatVals = [];
+while ($arProp = $rsPropList->GetNext()) {
+    if ($arProp['PROPERTY_FAT_VALUE'] != '') {
+        $fatVals[] = $arProp['PROPERTY_FAT_VALUE'];
+    }
 }
-$arResult['PROPS_FILTER_UI']['BRAND'] = $brands;
+$arResult['PROPS_FILTER_UI']['FAT'] = $fatVals;
