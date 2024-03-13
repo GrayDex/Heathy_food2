@@ -32,8 +32,8 @@
 ); ?>
 
 <? $APPLICATION->IncludeComponent(
-	"bitrix:news.detail", 
-	"catalog_item_detail", 
+	"bitrix:news.detail",
+	"catalog_item_detail",
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_ELEMENT_CHAIN" => "Y",
@@ -81,7 +81,7 @@
 			4 => "ENERGY_PROP",
 			5 => "COMPOSITION",
 			6 => "CONDITION_STOR",
-			7 => "",
+			7 => "GALLERY_FILES",
 		),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_CANONICAL_URL" => "N",

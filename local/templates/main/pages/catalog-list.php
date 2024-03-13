@@ -83,16 +83,20 @@
     ); ?>
 
     <?php
+   
     global $arrFilter;
     $arrFilter = [];
  
     if (isset($arrUrl[2])) {
         $arrFilter['=SECTION_CODE'] = $arrUrl[2];
     }
-    if (isset($_GET['brand'])) {
-        //$arrFilter['=BRAND'] = $_GET['brand'];
-       //dd($_GET['brand']);
+    if ($_GET['top']) {
+        $arrFilter['=PROPERTY_LOGO_VALUE'] = 'top';
     }
+    if ($_GET['brand']) {
+        $arrFilter['PROPERTY_BRAND'] = $_GET['brand'];
+    }
+    //dd($_GET, die:0);
     //dd($arrFilter);
     $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 

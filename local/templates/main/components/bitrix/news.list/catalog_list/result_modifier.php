@@ -1,7 +1,6 @@
 <?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die;
 
 
-
 // resize images
 foreach ($arResult['ITEMS'] as $key => $arItem) {
     if ($arItem['PREVIEW_PICTURE']) {
@@ -12,7 +11,7 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
     }
 }
 
-// setup list of sections to show
+// setup list of sections for UI
 $arResult['PARENT_SECTION'] = $arResult['SECTION']['PATH'][0];
 $arResult['ACTIVE_SECTION_ID'] = $arResult['PARENT_SECTION']['ID'];
 
@@ -65,23 +64,52 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
     }
 }
 
+// property logo='top' to show into UI filter options, if exist
+$rsRes = CIBlockElement::GetList(
+    arFilter: ['SECTION_ID' => 2, 'INCLUDE_SUBSECTIONS' => 'Y'],
+    arSelectFields: ['PROPERTY_BRAND_VALUE']
+);
+
+$arrRes = [];
+while ($arItem = $rsRes->GetNext()) {
+    $arrRes[] = $arItem;
+}
+//dd($arrRes);
+
+
+
+// property logo='top' to show into UI filter options, if exist
+$rsPropLogo = CIBlockElement::GetList(
+    arFilter: [
+        'SECTION_ID' => $arResult['ACTIVE_SECTION_ID'], 
+        'INCLUDE_SUBSECTIONS' => 'Y', 
+        'PROPERTY_LOGO_VALUE' => 'top'],
+    arSelectFields: ['NAME'],
+);
+
+if ($rsPropLogo->GetNext()) {
+    $arResult['PROPS_FILTER_UI']['LOGO'] = true;
+}
+
+
+// get brand names from propertie to show in filter UI
 $rsPropList = CIBlockElement::GetList(
-    arFilter: ['SECTION_ID' => $arResult['ACTIVE_SECTION_ID'], 'INCLUDE_SUBSECTIONS' => 'Y'],
+    arFilter: ['SECTION_ID' => $arResult['PARENT_SECTION'], 'INCLUDE_SUBSECTIONS' => 'Y'],
     arGroupBy: ['PROPERTY_BRAND'],
 );
 
-$propsList = [];
+$brandIDs = [];
 while ($arProps = $rsPropList->GetNext()) {
-    $propsList[] = $arProps;
+    $brandIDs[] = $arProps['PROPERTY_BRAND_VALUE'];
 }
 
-$brandIDs = array_column($propsList, 'PROPERTY_BRAND_VALUE');
 $rsBrandNames = CIBlockElement::GetList(
     arFilter: ['ID' => $brandIDs],
-    arSelectFields: ['NAME'],
+    arSelectFields: ['NAME','ID'],
 );
 
 $brands=[];
 while ($brand = $rsBrandNames->GetNext()) {
-    $brands[] = $brand['NAME'];
+    $brands[] = $brand;
 }
+$arResult['PROPS_FILTER_UI']['BRAND'] = $brands;
