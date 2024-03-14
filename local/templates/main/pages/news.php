@@ -2,12 +2,13 @@
 
 <?php 
 $strDir = $APPLICATION->GetCurDir();
-$arrUrl = array_values(explode('/', $strDir));
+$strUrl = array_values(explode('/', $strDir));
 
-
+// dd($arrUrl);
 $arrUrl = array_filter($strUrl, function ($elem) {
     return $elem != '';
 });
+
 ?>
 
 <?php if (empty($arrUrl[3])) : ?>
@@ -75,7 +76,7 @@ $arrUrl = array_filter($strUrl, function ($elem) {
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PARENT_SECTION" => "",
-		"PARENT_SECTION_CODE" => "$arrUrl[2]",
+		"PARENT_SECTION_CODE" => $arrUrl[2],
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
 			0 => "",
@@ -123,7 +124,7 @@ $arrUrl = array_filter($strUrl, function ($elem) {
 	array(
 		"ACTIVE_DATE_FORMAT" => "j M Y",
 		"ADD_ELEMENT_CHAIN" => "N",
-		"ADD_SECTIONS_CHAIN" => "Y",
+		"ADD_SECTIONS_CHAIN" => "N",
 		"AJAX_MODE" => "N",
 		"AJAX_OPTION_ADDITIONAL" => "",
 		"AJAX_OPTION_HISTORY" => "N",

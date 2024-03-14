@@ -1,4 +1,11 @@
-<?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die; ?>
+<?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die; 
+
+if ($_GET['ajax'] && $_GET['SORT']) {
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/local/templates/main/pages/catalog/cookie.php');
+    
+    die();
+}
+?>
 
 <div class="popup-filters mobile" data-popup-wrapper="catalog-filters" data-overlay-on>
     <div class="popup-filters__close popup-video__close" data-popup-close="catalog-filters">
@@ -86,12 +93,14 @@
     global $arrFilter;
     $arrFilter = [];
 
+    // sections
     if (isset($arrUrl[2])) {
         $arrFilter['=SECTION_CODE'] = $arrUrl[2];
     }
 
+    //filters
     $filterPropByGetParam = [
-        'top'=>'=PROPERTY_LOGO_VALUE', 
+        'top' => '=PROPERTY_LOGO_VALUE',
         'brand' => '=PROPERTY_BRAND',
         'fat' => '=PROPERTY_FAT',
     ];
@@ -100,6 +109,19 @@
         if ($_GET[$getParam]) {
             $arrFilter[$propName] = $_GET[$getParam];
         }
+    }
+
+    $sortList = [
+        'SORT1' => ['SORT_BY' => 'ACTIVE_FROM', 'ORDER' => 'DESC'],
+        'SORT2' => ['SORT_BY' => 'SORT', 'ORDER' => 'ASC'],
+    ];
+    use Bitrix\Main\Application;
+    $request = Application::getInstance()->getContext()->getRequest();
+    
+    if ($cookieContent == 'popular') {
+        $temp = $sortList['SORT1'];
+        $sortList['SORT1'] = $sortList['SORT2'];
+        $sortList['SORT2'] = $temp;
     }
 
     $APPLICATION->IncludeComponent(
@@ -162,10 +184,10 @@
             "SET_STATUS_404" => "N",
             "SET_TITLE" => "N",
             "SHOW_404" => "N",
-            "SORT_BY1" => "ACTIVE_FROM",
-            "SORT_BY2" => "SORT",
-            "SORT_ORDER1" => "DESC",
-            "SORT_ORDER2" => "ASC",
+            "SORT_BY1" => $sortList['SORT1']['SORT_BY'],
+            "SORT_BY2" => $sortList['SORT2']['SORT_BY'],
+            "SORT_ORDER1" => $sortList['SORT1']['ORDER'],
+            "SORT_ORDER2" => $sortList['SORT2']['OREDR'],
             "STRICT_SECTION_CHECK" => "N",
             "USER_PARAM" => "Hello",
             "COMPONENT_TEMPLATE" => "catalog_list"

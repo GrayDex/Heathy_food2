@@ -6,13 +6,13 @@ $arrUrl = array_filter($strUrl, function ($elem) {
 });
 
 if (!isset($arrUrl[2])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/local/templates/main/pages/catalog-main.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/local/templates/main/pages/catalog/catalog-main.php";
 }
 
 if (isset($arrUrl[2]) && !isset($arrUrl[3])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/local/templates/main/pages/catalog-list.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/local/templates/main/pages/catalog/catalog-list.php";
 }
 
 if (isset($arrUrl[3])) {
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/local/templates/main/pages/catalog-detail.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/local/templates/main/pages/catalog/catalog-detail.php";
 }
