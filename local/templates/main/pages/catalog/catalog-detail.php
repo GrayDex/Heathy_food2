@@ -1,5 +1,6 @@
 <?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die; ?>
 
+
 <div class="popup-video" data-popup-fade="recipec-video">
 	<div class="popup-video__close" data-fade-close="main-video">
 		<div class="btn-hover_parent">
@@ -18,18 +19,6 @@
 		</div>
 	</div>
 </div>
-
-<?php $APPLICATION->IncludeComponent(
-	"bitrix:breadcrumb",
-	"nav_catalog_list",
-	array(
-		"PATH" => "",
-		"SITE_ID" => "s1",
-		"START_FROM" => "0",
-		"COMPONENT_TEMPLATE" => "nav_catalog_list"
-	),
-	false
-); ?>
 
 <? $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",

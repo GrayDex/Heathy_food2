@@ -1,5 +1,6 @@
 <?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die;
 
+
 // resize images
 foreach ($arResult['ITEMS'] as $key => $arItem) {
     if ($arItem['PREVIEW_PICTURE']) {
@@ -126,3 +127,12 @@ while ($arProp = $rsPropList->GetNext()) {
     }
 }
 $arResult['PROPS_FILTER_UI']['FAT'] = $fatVals;
+
+// breadcrumbs
+$navChain = [];
+$navChain[] = ['NAME' => 'главная', 'URL' => '/',];
+$navChain[] = ['NAME' => 'каталог', 'URL' => '/catalog/',];
+foreach ($arResult['SECTION']['PATH'] as $section) {
+    $navChain[] = ['NAME' => $section['NAME'], 'URL' => $section['SECTION_PAGE_URL'],];
+}
+$arResult['NAV_CHAIN'] = $navChain;
