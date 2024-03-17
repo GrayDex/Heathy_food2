@@ -1,10 +1,15 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-    const descForm = document.querySelector('.catalog-hero__activity');
 
-    const descSelects = document.querySelectorAll('.catalog-hero__activity .select__select');
+    // common init
+    const deskForm = document.querySelector('.catalog-hero__activity');
+    const mobForm = document.querySelector('.popup-filters');
+    const deskSelects = document.querySelectorAll('.catalog-hero__activity .select__select');
+    const deskCheckBox = document.querySelector('.catalog-check-desktop');
+    console.log(deskCheckBox);
+    // submit changes of filter selects
     const config = { attributes: true };
-    let descSelectData = {};
+    let deskSelectData = {};
 
     const selectsDeskMut = function (mutationList, observer) {
         mutationList.forEach(mutation => {
@@ -12,27 +17,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const filterName = mutation.target.getAttribute('name');
                 const filterValue = GetActiveSelectVal(mutation.target);
-                console.log(filterValue)
+                //console.log(filterValue)
 
-                if (!descSelectData.hasOwnProperty(filterName)) { // if not init
-                    descSelectData[filterName] = filterValue;
-                    console.log(descSelectData);
+                if (!deskSelectData.hasOwnProperty(filterName)) { // if not init
+                    deskSelectData[filterName] = filterValue;
+                    console.log(deskSelectData);
 
-                } else if (filterValue && descSelectData[filterName] != filterValue) {
+                } else if (filterValue && deskSelectData[filterName] != filterValue) { // if new valid value
 
-                    descSelectData[filterName] = filterValue;
+                    deskSelectData[filterName] = filterValue;
                     observer.disconnect();
-                    if (filterName == 'sort') {
+                    if (filterName == 'sort') { // if select is 'sort', then set up cookie
                         let data = {};
-                        data[filterName] = descSelectData[filterName];
+                        data[filterName] = deskSelectData[filterName];
                         sendAjaxRequest(data).then(function () {
-                            descForm.submit(); // Submit the form when the AJAX request is successful
+                            deskForm.submit();
                         });
                     } else {
-                        descForm.submit();
+                        deskForm.submit();
                     }
                 } else {
-                    console.log('already was set up');
+                    //console.log('already was set up');
                 }
             }
         });
@@ -57,8 +62,40 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(response.status);
     };
 
-    for (let Select of descSelects) {
+    deskSelects.forEach(select => {
         const observer = new MutationObserver(selectsDeskMut);
-        observer.observe(Select, config);
-    };
+        observer.observe(select, config);
+    })
+
+
+    // submit changes of checkbox top (desktop)
+    const checkBoxLabel = document.querySelector('#top_desktop');
+    checkBoxLabel.addEventListener('click', () => {
+        if (deskCheckBox.checked) {
+            deskCheckBox.checked = false;
+        } else {
+            deskCheckBox.checked = true;
+        }
+        deskForm.submit();
+    })
+
+
+    // reset buttons (desktop, mobile)
+    const resetButtons = document.querySelectorAll('.catalog-hero__reset-text')
+    resetButtons.forEach(resetButton => {
+        resetButton.addEventListener('click', () => {
+            deskSelects.forEach(select => {
+                select.selectedIndex = -1;
+            });
+            deskCheckBox.removeAttribute('checked');
+            deskForm.submit(); // send only one of them
+        })
+    })
+
+
+    // submit button (mobile)
+    const mobSubmitBut = document.querySelector('.popup-filters__bot-btn');
+    mobSubmitBut.addEventListener('click', () => {
+        mobForm.submit();
+    })
 });
