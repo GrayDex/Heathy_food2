@@ -80,7 +80,6 @@ if ($rsPropLogo->GetNext()) {
 
 
 // get brand names from properties to show in UI filter
-
 $rsPropList = CIBlockElement::GetList(
     arFilter: [
         'SECTION_ID' => $arResult['ACTIVE_SECTION_ID'],
@@ -93,7 +92,7 @@ $rsPropList = CIBlockElement::GetList(
 $brandIDs = [];
 while ($arProps = $rsPropList->GetNext()) {
     if ($arProps['PROPERTY_BRAND_VALUE'] != '') {
-        $brandIDs[] = $arProps;
+        $brandIDs[] = $arProps['PROPERTY_BRAND_VALUE'];
     }
 }
 
