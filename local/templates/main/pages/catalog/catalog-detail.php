@@ -4,25 +4,26 @@
 <div class="popup-video" data-popup-fade="recipec-video">
 	<div class="popup-video__close" data-fade-close="main-video">
 		<div class="btn-hover_parent">
-			<div class="btn-hover_circle white"></div>
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none">
-				<path d="M6.69678 6.69671L17.3034 17.3033" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-				<path d="M6.69662 17.3033L17.3032 6.69671" stroke="#0068FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+			<div class="btn-hover_circle white"></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+				viewbox="0 0 24 24" fill="none">
+				<path d="M6.69678 6.69671L17.3034 17.3033" stroke="#0068FF" stroke-width="2" stroke-linecap="round"
+					stroke-linejoin="round"></path>
+				<path d="M6.69662 17.3033L17.3032 6.69671" stroke="#0068FF" stroke-width="2" stroke-linecap="round"
+					stroke-linejoin="round"></path>
 			</svg>
 		</div>
 	</div>
 	<div class="popup-video__inner">
-		<div class="popup-video__video">
-			<video class="zp-video" controls="controls" width="100%" height="100%" poster="<?= SITE_TEMPLATE_PATH ?>/assets/images/about-production-popup-icecream.png" preload="none">
-				<source src="<?= SITE_TEMPLATE_PATH ?>/assets/videos/video-zdor-product.mp4">
-			</video>
-		</div>
+		<div class="popup-video__video"><video class="zp-video" controls="controls" width="100%" height="100%"
+				poster="<?= SITE_TEMPLATE_PATH?>/assets/images/about-production-popup-icecream.png" preload="none">
+				<source src="<?= SITE_TEMPLATE_PATH?>/assets/videos/video-zdor-product.mp4">
+			</video></div>
 	</div>
 </div>
 
 <? $APPLICATION->IncludeComponent(
-	"bitrix:news.detail",
-	"catalog_item_detail",
+	"bitrix:news.detail", 
+	"catalog_item_detail", 
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_ELEMENT_CHAIN" => "Y",
@@ -71,6 +72,7 @@
 			5 => "COMPOSITION",
 			6 => "CONDITION_STOR",
 			7 => "GALLERY_FILES",
+			8 => "",
 		),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_CANONICAL_URL" => "N",

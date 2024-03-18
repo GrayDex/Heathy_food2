@@ -5,7 +5,6 @@ if ($_GET['ajax'] && $_GET['SORT']) {
     die();
 }
 ?>
-
     <?php
     global $arrFilter;
     $arrFilter = [];

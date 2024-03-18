@@ -1,7 +1,7 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-$strReturn = '<div class="catalog-hero__breadcrumbs">
+$strReturn = '
                 <div class="breadcrumbs">
                     <div class="breadcrumbs-wrapper">
                         <div class="breadcrumbs-wrapper__row">';
@@ -26,7 +26,6 @@ foreach ($arResult as $key => $item) {
 }
 $strReturn .= ' </div>
             </div>
-        </div>
-    </div>';
+        </div>';
 
 return $strReturn;

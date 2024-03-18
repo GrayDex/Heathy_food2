@@ -9,5 +9,4 @@ if (isset($data['sort'])) {
     Bitrix\Main\Application::getInstance()->getContext()->getResponse()->addCookie($cookie);
     Bitrix\Main\Application::getInstance()->getContext()->getResponse()->flush('');
 }
-
 die();

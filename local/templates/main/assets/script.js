@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobForm = document.querySelector('.popup-filters');
     const deskSelects = document.querySelectorAll('.catalog-hero__activity .select__select');
     const deskCheckBox = document.querySelector('.catalog-check-desktop');
-    console.log(deskCheckBox);
+
+
     // submit changes of filter selects
     const config = { attributes: true };
     let deskSelectData = {};
@@ -17,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const filterName = mutation.target.getAttribute('name');
                 const filterValue = GetActiveSelectVal(mutation.target);
-                //console.log(filterValue)
 
                 if (!deskSelectData.hasOwnProperty(filterName)) { // if not init
                     deskSelectData[filterName] = filterValue;
@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (filterName == 'sort') { // if select is 'sort', then set up cookie
                         let data = {};
                         data[filterName] = deskSelectData[filterName];
-                        sendAjaxRequest(data).then(function () {
-                            deskForm.submit();
-                        });
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/local/templates/main/include/ajax/catalog/cookie_sort.php', false);
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.send(JSON.stringify(data));
+                        deskForm.submit();
                     } else {
                         deskForm.submit();
                     }
-                } else {
-                    //console.log('already was set up');
                 }
             }
         });
@@ -70,14 +70,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // submit changes of checkbox top (desktop)
     const checkBoxLabel = document.querySelector('#top_desktop');
-    checkBoxLabel.addEventListener('click', () => {
-        if (deskCheckBox.checked) {
-            deskCheckBox.checked = false;
-        } else {
-            deskCheckBox.checked = true;
-        }
-        deskForm.submit();
-    })
+    if (checkBoxLabel && deskCheckBox) {
+        checkBoxLabel.addEventListener('change', () => {
+            if (deskCheckBox.checked) {
+                deskCheckBox.checked = false;
+            } else {
+                deskCheckBox.checked = true;
+            }
+            deskForm.submit();
+        })
+    }
 
 
     // reset buttons (desktop, mobile)
@@ -95,7 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // submit button (mobile)
     const mobSubmitBut = document.querySelector('.popup-filters__bot-btn');
-    mobSubmitBut.addEventListener('click', () => {
-        mobForm.submit();
-    })
+    if (mobSubmitBut) {
+        mobSubmitBut.addEventListener('click', () => {
+            mobForm.submit();
+        })
+    }
 });
