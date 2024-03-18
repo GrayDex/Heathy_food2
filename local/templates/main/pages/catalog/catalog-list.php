@@ -92,7 +92,7 @@ if ($_GET['ajax'] && $_GET['SORT']) {
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
-        "SORT_BY1" => $sortBy,
+		"SORT_BY1" => $sortBy,
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",

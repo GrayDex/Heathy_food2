@@ -53,14 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return '';
     }
 
-    const sendAjaxRequest = async data => {
-        const response = await fetch('/local/templates/main/include/ajax/catalog/cookie_sort.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-        console.log(response.status);
-    };
+
 
     deskSelects.forEach(select => {
         const observer = new MutationObserver(selectsDeskMut);
