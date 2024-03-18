@@ -95,4 +95,34 @@ document.addEventListener('DOMContentLoaded', function () {
             mobForm.submit();
         })
     }
+
+    // submit feedback form from catalog detail
+    const feedCatalogForm = document.querySelector('[js_form_feed]');
+    const feedSubmit = document.querySelector('[js_form_feed_but]');
+    const respContainer = document.querySelector('#response');
+
+    feedSubmit.addEventListener('click', (event) => {
+        event.preventDefault();
+        const formData = new FormData(feedCatalogForm);
+        const jsonData = JSON.stringify(Object.fromEntries(formData));
+
+        // process data before send, sparse, etc....
+
+        const request = BX.ajax({
+            url: '/local/templates/main/include/ajax/catalog/form_catalog.php',
+            method: 'POST',
+            data: jsonData,
+            dataType: 'json',
+            timeout: 60,
+            async: false,
+            onsuccess: function(response) {
+                console.log(response);
+                respContainer.innerHTML = response.html;
+            },
+            onfailure: function(error) {
+                console.error(error);
+            }
+        });
+    })
+
 });

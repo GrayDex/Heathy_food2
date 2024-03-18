@@ -1,6 +1,8 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 $this->setFrameMode(true);
 $APPLICATION->SetTitle($arResult['NAME']);
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/local/templates/main/pages/catalog/form_catalog_detail.php';
 ?>
 
 <section class="catalog-detail top-section container">
@@ -302,44 +304,11 @@ $APPLICATION->SetTitle($arResult['NAME']);
 					</div>
 				</div>
 			</div>
-			<div class="catalog-detail__form" data-aos="fade-up">
-				<div class="catalog-detail__form-title">задать вопрос по продукту или&nbsp;оставить заявку на закупку
-				</div>
-				<div class="catalog-detail__form-content">
-					<form class="partners-requisites__form" data-form="catalog-detail">
-						<div class="partners-requisites__form-top">
-							<div class="input-wrapper" data-input-parent="">
-								<div class="input-wrapper__placeholder">Имя</div>
-								<input class="input" data-input="" required data-mask-text="" data-parsley-pattern="^[А-Яа-яЁё -]+$" placeholder="Имя">
-							</div>
-							<div class="input-wrapper" data-input-parent="">
-								<div class="input-wrapper__placeholder">Телефон</div>
-								<input class="input" data-input="" required type="tel" placeholder="Телефон" data-mask-phone="">
-							</div>
-							<div class="input-wrapper" data-input-parent="">
-								<div class="input-wrapper__placeholder">E-mail</div>
-								<input class="input" data-input="" required type="email" placeholder="E-mail">
-							</div>
-						</div>
-						<div class="partners-requisites__form-area">
-							<div class="input-wrapper input-wrapper_textarea" data-input-parent="">
-								<div class="input-wrapper__placeholder placeholder_background">Комментраий к заявке
-								</div>
-								<textarea class="textarea" data-input="" type="text" placeholder="Комментраий к заявке"></textarea>
-							</div>
-						</div>
-						<div class="partners-requisites__form-bot">
-							<div class="partners-requisites__form-policy">Нажимая на кнопку «Отправить», вы даете
-								согласие с<a class="partners-requisites__form-link" href="#"> политикой в отношении
-									обработки персональных данных</a></div>
-							<button class="partners-requisites__form-btn btn-hover_parent" type="submit">
-								<div class="btn-hover_circle"></div>
-								<span>Отправить</span>
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
+
+			<!-- form -->
+			<? $APPLICATION->ShowViewContent('mycontent'); ?>
+			<!-- end form -->
+			
 			<a class="catalog-detail__rect btn-hover_parent" href="<?= $arResult['PROPERTIES']['NEXT_ITEM']['ITEM_URL'] ?>">
 				<div class="catalog-detail__rect-circle">
 					<div class="catalog-hero__rec-circle">
