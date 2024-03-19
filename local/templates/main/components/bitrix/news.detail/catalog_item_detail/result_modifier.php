@@ -69,3 +69,9 @@ foreach ($packPropNames as $propName) {
     }
 }
 
+
+// form data
+$arResult['FORM_DATA']= [
+    'item_name' => $arResult['NAME'],
+    'item_url' => $arResult['DETAIL_PAGE_URL'],
+];

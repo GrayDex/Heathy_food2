@@ -7,6 +7,7 @@
     <div class="catalog-detail__form-content">
         <form class="partners-requisites__form" data-form="catalog-detail">
             <div class="partners-requisites__form-top">
+                <?= bitrix_sessid_post() ?>
                 <div class="input-wrapper" data-input-parent="">
                     <div class="input-wrapper__placeholder">Имя</div>
                     <input class="input" name="name" data-input="" required data-mask-text="" data-parsley-pattern="^[А-Яа-яЁё -]+$" placeholder="Имя">
@@ -24,7 +25,7 @@
                 <div class="input-wrapper input-wrapper_textarea" data-input-parent="">
                     <div class="input-wrapper__placeholder placeholder_background">Комментраий к заявке
                     </div>
-                    <textarea class="textarea" data-input="" type="text" placeholder="Комментраий к заявке"></textarea>
+                    <textarea class="textarea" data-input="" name="comment" type="text" placeholder="Комментраий к заявке"></textarea>
                 </div>
             </div>
             <?php

@@ -106,8 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(feedCatalogForm);
         const jsonData = JSON.stringify(Object.fromEntries(formData));
 
-        // process data before send, sparse, etc....
-
         const request = BX.ajax({
             url: '/local/templates/main/include/ajax/catalog/form_catalog.php',
             method: 'POST',
@@ -117,10 +115,10 @@ document.addEventListener('DOMContentLoaded', function () {
             async: false,
             onsuccess: function(response) {
                 console.log(response);
-                respContainer.innerHTML = response.html;
+                //respContainer.innerHTML = response.html;
             },
             onfailure: function(error) {
-                console.error(error);
+                console.log(error);
             }
         });
     })
