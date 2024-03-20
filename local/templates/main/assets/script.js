@@ -1,6 +1,16 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    // catalog list filters
+    catalogFilters();
+
+    // catalog detail feedback form
+    feedCatalogForm();
+
+});
+
+function catalogFilters() {
+
     // common init
     const deskForm = document.querySelector('.catalog-hero__activity');
     const mobForm = document.querySelector('.popup-filters');
@@ -62,9 +72,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // submit changes of checkbox top (desktop)
-    const checkBoxLabel = document.querySelector('#top_desktop');
-    if (checkBoxLabel && deskCheckBox) {
-        checkBoxLabel.addEventListener('change', () => {
+    const checkBoxLabel = document.querySelector('[js_top_checklabel_desc]');
+    if (checkBoxLabel) {
+        checkBoxLabel.addEventListener('click', () => {
             if (deskCheckBox.checked) {
                 deskCheckBox.checked = false;
             } else {
@@ -97,12 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
             mobForm.submit();
         })
     }
+}
 
-    feedCatalogForm();
-
-    // submit feedback form from catalog detail
-
-});
 
 
 function feedCatalogForm() {
@@ -120,7 +126,6 @@ function feedCatalogForm() {
                 method: 'POST',
                 data: jsonData,
                 dataType: 'json',
-                timeout: 60,
                 async: false,
                 onsuccess: function (response) {
                     response.status ? userContent.status = response.status : console.log(response);

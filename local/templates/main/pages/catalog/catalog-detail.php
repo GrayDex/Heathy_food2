@@ -46,7 +46,7 @@
 		"DISPLAY_PICTURE" => "N",
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
-		"ELEMENT_CODE" => $arrUrl[3],
+		"ELEMENT_CODE" => $GET_ELEM_CODE,
 		"ELEMENT_ID" => "",
 		"FIELD_CODE" => array(
 			0 => "",

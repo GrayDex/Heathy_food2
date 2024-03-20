@@ -2,7 +2,6 @@
 
 $jsonData = json_decode(file_get_contents('php://input', true));
 
-$request = \Bitrix\Main\Application::getInstance()->getContext()->getRequest();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SERVER['HTTP_BX_AJAX']) {
 
     // make sure that session ID is exist

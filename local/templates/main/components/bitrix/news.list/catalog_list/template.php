@@ -137,7 +137,7 @@
     <form class="catalog-hero__activity" data-aos="fade-up">
 
         <?php if ($arResult['PROPS_FILTER_UI']['LOGO']) : ?>
-            <label class="catalog-hero__tops desktop" for="top" id="top_desktop">
+            <label js_top_checklabel_desc class="catalog-hero__tops desktop" for="top" id="top_desktop">
                 <input class="catalog-hero__tops-input catalog-check-desktop" type="checkbox" name="top" id="top" value="top" <?= $_GET['top'] == 'top' ? 'checked' : '' ?>>
                 <div class="catalog-hero__tops-box">
                     <svg class="mark-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewbox="0 0 14 10" fill="none">

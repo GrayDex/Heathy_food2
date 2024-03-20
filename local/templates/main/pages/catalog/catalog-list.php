@@ -10,8 +10,8 @@ if ($_GET['ajax'] && $_GET['SORT']) {
     $arrFilter = [];
 
     // sections
-    if (isset($arrUrl[2])) {
-        $arrFilter['=SECTION_CODE'] = $arrUrl[2];
+    if (isset($GET_SECT_CODE)) {
+        $arrFilter['=SECTION_CODE'] = $GET_SECT_CODE;
     }
 
     //filters
@@ -75,7 +75,7 @@ if ($_GET['ajax'] && $_GET['SORT']) {
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Новости",
 		"PARENT_SECTION" => "",
-		"PARENT_SECTION_CODE" => $arrUrl[2],
+		"PARENT_SECTION_CODE" => $GET_SECT_CODE,
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"PROPERTY_CODE" => array(
 			0 => "WEIGHT",
