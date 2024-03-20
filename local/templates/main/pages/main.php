@@ -179,41 +179,41 @@
     </div>
 
     <? $APPLICATION->IncludeComponent(
-        "bitrix:catalog.section.list",
-        "catalog",
-        array(
-            "ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
-            "ADD_SECTIONS_CHAIN" => "Y",
-            "CACHE_FILTER" => "N",
-            "CACHE_GROUPS" => "Y",
-            "CACHE_TIME" => "36000000",
-            "CACHE_TYPE" => "A",
-            "COMPONENT_TEMPLATE" => "catalog",
-            "COUNT_ELEMENTS" => "Y",
-            "COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
-            "FILTER_NAME" => "sectionsFilter",
-            "HIDE_SECTIONS_WITH_ZERO_COUNT_ELEMENTS" => "N",
-            "IBLOCK_ID" => "2",
-            "IBLOCK_TYPE" => "content",
-            "SECTION_CODE" => "",
-            "SECTION_FIELDS" => array(
-                0 => "NAME",
-                1 => "PICTURE",
-                2 => "DETAIL_PICTURE",
-                3 => "",
-            ),
-            "SECTION_ID" => $_REQUEST["SECTION_ID"],
-            "SECTION_URL" => "",
-            "SECTION_USER_FIELDS" => array(
-                0 => "UF_COLOR",
-                1 => "",
-            ),
-            "SHOW_PARENT_NAME" => "Y",
-            "TOP_DEPTH" => "1",
-            "VIEW_MODE" => "LINE"
-        ),
-        false
-    ); ?>
+	"bitrix:catalog.section.list", 
+	"catalog", 
+	array(
+		"ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
+		"ADD_SECTIONS_CHAIN" => "Y",
+		"CACHE_FILTER" => "N",
+		"CACHE_GROUPS" => "Y",
+		"CACHE_TIME" => "36000000",
+		"CACHE_TYPE" => "A",
+		"COMPONENT_TEMPLATE" => "catalog",
+		"COUNT_ELEMENTS" => "Y",
+		"COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
+		"FILTER_NAME" => "sectionsFilter",
+		"HIDE_SECTIONS_WITH_ZERO_COUNT_ELEMENTS" => "N",
+		"IBLOCK_ID" => "2",
+		"IBLOCK_TYPE" => "content",
+		"SECTION_CODE" => "",
+		"SECTION_FIELDS" => array(
+			0 => "NAME",
+			1 => "PICTURE",
+			2 => "DETAIL_PICTURE",
+			3 => "",
+		),
+		"SECTION_ID" => "",
+		"SECTION_URL" => "",
+		"SECTION_USER_FIELDS" => array(
+			0 => "UF_COLOR",
+			1 => "",
+		),
+		"SHOW_PARENT_NAME" => "Y",
+		"TOP_DEPTH" => "1",
+		"VIEW_MODE" => "LINE"
+	),
+	false
+); ?>
 
 </section>
 <section class="main-traditions container-fluid" data-aos="fade-up" data-aos-duration="1500">
@@ -509,8 +509,8 @@
     </div>
     <div class="popup-video__inner">
         <div class="popup-video__video">
-            <video class="zp-video" controls="controls" width="100%" height="100%" poster="./assets/images/about-production-popup-icecream.png" preload="none">
-                <source src="<?= SITE_TEMPLATE_PATH ?>/./assets/videos/video-zdor-product.mp4">
+            <video class="zp-video" controls="controls" width="100%" height="100%" poster="<?= SITE_TEMPLATE_PATH ?>/assets/images/about-production-popup-icecream.png" preload="none">
+                <source src="<?= SITE_TEMPLATE_PATH ?>/assets/videos/video-zdor-product.mp4">
             </video>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/urlrewrite.php');?>
 
 <?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetTitle("Новости"); ?>
+$APPLICATION->SetTitle("404"); ?>
 
 <section class="error-content top-section container">
 	<div class="error-content__top">

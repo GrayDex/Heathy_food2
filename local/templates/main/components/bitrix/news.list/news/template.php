@@ -62,18 +62,18 @@
         $this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
         ?>
         <div id="<?= $this->GetEditAreaId($arItem['ID']); ?>">
-            <a class="news-card" href="<?= $arItem['~DETAIL_PAGE_URL'] ?>">
+            <a class="news-card" href="<?= $arItem['DETAIL_PAGE_URL'] ?>">
                 <div class="news-card__top">
                     <div class="news-card__plug"><?= $arItem['SECTION_NAME'] ?></div>
                     <div class="news-card__bg">
                         <picture class="picture">
-                            <img class="picture__img" src="<?= $arItem['DETAIL_PICTURE']['RES_PIC_SRC'] ?>">
+                            <img class="picture__img" src="<?= $arItem['PREVIEW_PICTURE']['RES_PIC_SRC'] ?>">
                         </picture>
                     </div>
                 </div>
                 <div class="news-card__bot">
                     <div class="news-card__date"><?= $arItem['DISPLAY_ACTIVE_FROM'] ?></div>
-                    <div class="news-card__title"><?= $arItem['~NAME'] ?></div>
+                    <div class="news-card__title"><?= $arItem['NAME'] ?></div>
                 </div>
             </a>
         </div>

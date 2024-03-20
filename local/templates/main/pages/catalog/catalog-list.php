@@ -1,38 +1,30 @@
-<?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die; 
+<?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die;
+    
+	global $arrFilter;
+	$arrFilter = [];
 
-if ($_GET['ajax'] && $_GET['SORT']) {
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/local/templates/main/include/ajax/catalog/cookie_sort.php');
-    die();
-}
-?>
-    <?php
-    global $arrFilter;
-    $arrFilter = [];
+	// sections
+	if (isset($GET_SECT_CODE)) {
+		$arrFilter['=SECTION_CODE'] = $GET_SECT_CODE;
+	}
 
-    // sections
-    if (isset($GET_SECT_CODE)) {
-        $arrFilter['=SECTION_CODE'] = $GET_SECT_CODE;
-    }
+	//filters
+	$paramByName = [
+		'top' => '=PROPERTY_LOGO_VALUE',
+		'brand' => '=PROPERTY_BRAND',
+		'fat' => '=PROPERTY_FAT',
+	];
 
-    //filters
-    $filterPropByGetParam = [
-        'top' => '=PROPERTY_LOGO_VALUE',
-        'brand' => '=PROPERTY_BRAND',
-        'fat' => '=PROPERTY_FAT',
-    ];
+	foreach ($paramByName as $name => $param) {
+		if ($_GET[$name]) {
+			$arrFilter[$param] = $_GET[$name];
+		}
+	}
 
-    foreach ($filterPropByGetParam as $getParam => $propName) {
-        if ($_GET[$getParam]) {
-            $arrFilter[$propName] = $_GET[$getParam];
-        }
-    }
+	// sorting
+	$SORT_BY = $_COOKIE['sort'] == 'popular' ? 'SHOW_COUNTER' : 'ACTIVE_FROM';
 
-    $sortBy = 'ACTIVE_FROM';
-    if ($_COOKIE['sort'] && $_COOKIE['sort'] == 'popular') {
-        $sortBy = 'SHOW_COUNTER';
-    }
-
-    $APPLICATION->IncludeComponent(
+	$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"catalog_list", 
 	array(
@@ -92,7 +84,7 @@ if ($_GET['ajax'] && $_GET['SORT']) {
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
-		"SORT_BY1" => $sortBy,
+		"SORT_BY1" => $SORT_BY,
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",

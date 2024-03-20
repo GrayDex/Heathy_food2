@@ -1,11 +1,11 @@
 <?php if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die;
 
 foreach ($arResult['ITEMS'] as $key => $arItem) {
-    if ($arItem['DETAIL_PICTURE']) {
-        $picId = $arResult['ITEMS'][$key]['DETAIL_PICTURE']['ID'];
+    if ($arItem['PREVIEW_PICTURE']) {
+        $picId = $arResult['ITEMS'][$key]['PREVIEW_PICTURE']['ID'];
         $size = ["width" => 1200, "height" => 800];
         $resArr = CFile::ResizeImageGet($picId, $size, BX_RESIZE_IMAGE_EXACT);
-        $arResult['ITEMS'][$key]['DETAIL_PICTURE']['RES_PIC_SRC'] = $resArr['src'];
+        $arResult['ITEMS'][$key]['PREVIEW_PICTURE']['RES_PIC_SRC'] = $resArr['src'];
     }
 }
 
