@@ -306,7 +306,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/local/templates/main/pages/catalog/form
 			</div>
 
 			<!-- form -->
-			<? $APPLICATION->ShowViewContent('mycontent'); ?>
+			<? $APPLICATION->ShowViewContent('form_catalog'); ?>
 			<!-- end form -->
 			
 			<a class="catalog-detail__rect btn-hover_parent" href="<?= $arResult['PROPERTIES']['NEXT_ITEM']['ITEM_URL'] ?>">
@@ -342,3 +342,5 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/local/templates/main/pages/catalog/form
 
 	</div>
 </section>
+
+<?php $APPLICATION->ShowViewContent('form_catalog_popup'); ?>
