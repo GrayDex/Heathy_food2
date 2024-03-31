@@ -1,0 +1,94 @@
+
+ИБ Фильтры:
+        элементы:
+            название свойства для фильтрации,
+            код свойства для фильтрации
+            тип свойства для фильтрации
+
+    ИБ Каталог
+    URL раздела:#SITE_DIR#/catalog/#SECTION_CODE#
+    URL элемента:#SITE_DIR#/catalog/#SECTION_CODE#/#CODE#
+        секции:
+            Название- из NAME(порезы, вибрации)
+                символьный код обяз.
+                генерировать из названия
+            пользовательское свойство:
+                - фильтры: // UF_FILTER
+                    привязка к элементам ИБ Фильтры, множеств
+
+                - характеристики:
+                    список строка + множ:содержит обычные названия нужных свойств для отображения
+    modifier:
+        1)получить свойства для фильтрации из ИБ Фильтры:
+            ids = CIBlockSection::GetList(arFilter: ['IBLOCK_ID'=, 'ID'=], arSelect:['UF_FILTER']);
+            CIBlockElement::GetList(ids)
+            получение свойств элементов для фильтрации
+            фильтрация....
+
+        2) получить названия элементов из списка так же как выше
+        name - название элемента
+            if (arItem['NAME']==name) -> отображать в шаблоне
+                    
+
+      
+
+
+ //===========================================           
+        поля элементов:
+            Название - из NAME ('Микропол MG-162 (ex. TPU-13)')
+                символьный код обяз.
+                генерировать из названия
+            превью изображ - из PREVIEW_PICTURE
+            Основа - строка // BASE_MAT
+            Поĸрытие - строка   // SURF
+            Длина - число?
+            Размеры - число?
+            Упаĸовĸа - число?
+
+            отрасли промышленности - строка // PROM_FIELD
+            условия применения - строка     // USAGE
+            логотип - список + множ ('new', 'rus') // LOGO
+
+2) Выпадающее меню:
+    - компонент меню
+3) Страница каталога:
+    - физ раздел Каталог
+    - breadcrumbs: default set
+    - компонент news.list:
+        настройка в редакторе:
+            кол-во элементов - 16; для моб - 8
+            - код раздела: _GET['SECTION_CODE]
+            - фильтр - arrFilter
+            
+        - modifier:
+            определить текущую секцию:
+            if (GET['SECTION_CODE']) {
+                arResult['MAIN_SECTION'] = arResult['SECTION]['PATH'][0]
+            } else {
+                arResult['MAIN_SECTION'] = '/catalog/'
+            }
+            - section filter:
+                CIBlockSection::GetList(
+                    'IBLOCK_ID' => arResult['ID'],
+                    'GLOBAL_ACTIVE' = 'Y'
+                )
+                get-> 'NAME', 'SECTION_PAGE_URL'
+                Все -> url = arResult['MAIN_SECTION']['URL']
+            - elements filter:
+
+                СIBlockElement::GetList(
+                    arFilter: ['ID' => arResult['MAIN_SECTION']['ID]],
+                    arSelectFields: ['SURF', 'BASE_MAT', 'NAME', 'USAGE', PROM_FIELD]
+                )
+                make unique and not empty
+                если id -> get name
+        - template call:
+            - arrFilter:
+                массив соответствия параметра в GET и свойства для фильтрации:
+                    keys = ['surface' => 'PROPERTY_SURF'] и тп
+                если свойство есть в GET:
+                    arFilter[keys[_GET['surface']]] = _GET[значение аргумента в верстке] // 'SURF', 'BASE_MAT', 'USAGE', PROM_FIELD
+        - template:
+            APPLICATION->SetTitle(Название текущей секции или инфоблока)    // если GET содержит SECTION_CODE
+        - js:
+            

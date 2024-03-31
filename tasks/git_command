@@ -1,0 +1,28 @@
+git status - changes
+git log - commit list
+git pull - take changes
+git push --force remote origin - give changes to repo
+git reset --hard <hash> - reset to commit 
+git commit --amend -m <name> - change commit
+
+
+git init— Инициализировать новый репозиторий Git.
+git clone <url>- Клонировать существующий репозиторий Git по указанному URL.
+git add <file>или git add .- Добавить файл или все файлы в индекс для последующего коммита.
+git commit -m "commit message"- Создать новый коммит с цитатой сообщением.
+git status- Показать современное состояние репозитория и список измененных материалов.
+git diff- Показать разницу между текущим состоянием файлов и последним коммитом.
+git log- Показать журнал коммитов.
+git pull- Извлекать изменения из удаленного репозитория и читать их с текущей веткой.
+git push <remote> <branch>- Отправить коммиты из текущей ветки в удаленный репозиторий.
+git branch- Показать список веток и текущую ветку.
+git checkout <branch>- Переключитесь на указанную ветку.
+git merge <branch>- Объединить указанную ветку с текущей веткой.
+git stash- Сохранение текущих изменений в стеке временных изменений.
+git stash apply- Применить последнее временное изменение из стека.
+git tag <tagname>- Создать тег для текущего коммита.
+git checkout -b <new_branch>- Создать новую ветку и переключиться на нее.
+git remote add <shortname> <url>- Добавить удаленный репозиторий.
+git remote rm <shortname>- Удалить удаленный репозиторий.
+git remote -v- Показать список удаленных репозиториев и их URL-адреса.
+git reset <commit>- Отменить коммиты и вернуться к указанному коммиту
